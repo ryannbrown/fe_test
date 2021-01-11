@@ -23,9 +23,32 @@
     align-items: center;
 }
 
+form input {
+    /* max-width:780px; */
+    width:780px;
+    height:70px;
+}
+
+form button {
+    width:180px;
+    height:78px;
+    background-color:#F6BC25;
+    color:#004A80;
+    font-size:2rem;
+    margin:0px 25px;
+}
+
 .info-heading {
     text-align:center;
 
+}
+
+.lookup-info{
+    max-width:75%;
+    margin:0px auto;
+    /* height:800px; */
+    
+    /* height:800px; */
 }
 
 .info-heading p {
@@ -36,30 +59,46 @@
 
 
 .info-wrapper{
+    overflow: hidden;
     display:flex;
     flex-direction:column;
+    flex-wrap:wrap;
+    height:800px;
 }
 
 .info-item {
     display:flex;
-    flex: 0 0 50%;
+    /* width:225px; */
+    flex: 1 1 25%;
+    height:200px;
     margin:25px;
-    flex-wrap:wrap;
+    /* flex-wrap:wrap; */
+}
+
+.info-text{
+    width:500px;
 }
 
 .info-number{
     background-color:#004A80;
-    width:100px;
-    height:100px;
+    width:90px;
+    height:90px;
     border-radius:50px;
     position:relative;
 }
 
 .info-number h1 {
+    color:#F6BC25;
     position:absolute;
     left:50%;
     margin-left:-12px;
+    margin-top:-27.5px;
     font-size:3rem;
-    /* top:50%; */
+    top:50%;
 }
+
+.gold-text{
+    color:#F6BC25;
+}
+
 
