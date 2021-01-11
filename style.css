@@ -1,3 +1,7 @@
+* {
+    font-family: Helvetica;
+}
+
 .header {
     width:100%;
     background-color:transparent;
@@ -51,10 +55,19 @@ form button {
     /* height:800px; */
 }
 
+.info-heading h1 {
+    font-size:2.5rem;
+    margin:50px 0px;
+}
+
 .info-heading p {
-    max-width:50%;
+    max-width:90%;
     margin:0px auto;
     text-align:left;
+    color:#4A4A4A;
+    font-size:22px;
+    line-height:2rem;
+    /* margin: 50px 0px; */
 }
 
 
@@ -76,7 +89,12 @@ form button {
 }
 
 .info-text{
-    width:500px;
+    max-width: 350px;
+}
+
+.info-text p {
+    line-height:1.5rem;
+    font-size:18px;
 }
 
 .info-number{
@@ -85,6 +103,7 @@ form button {
     height:90px;
     border-radius:50px;
     position:relative;
+    margin:25px;
 }
 
 .info-number h1 {
@@ -101,4 +120,20 @@ form button {
     color:#F6BC25;
 }
 
+.blue-text{
+    color:#004A80;
+}
 
+
+
+.footer-wrapper{
+    color:#999999;
+    max-width:95%;
+    margin:0px auto;
+    display:flex;
+}
+
+.footer-links {
+    display:flex;
+    align-items:center;
+}
