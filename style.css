@@ -62,6 +62,10 @@
     margin:5px;
 }
 
+form#redo-formhandler {
+    text-align:center;
+}
+
 
 
 form input {
