@@ -19,7 +19,7 @@
     <div class="page-parent">
       <div class="home-header">
         <div class="header-wrapper">
-          <div><image class="co-logo" src="./logo.png"></image></div>
+        <a href="/"><image class="co-logo" src="./logo.png"></image></a>
           <div>
             <image class="tray-icon" src="./search.png"></image>
             <image class="tray-icon" src="./person.png"></image>
@@ -34,7 +34,7 @@
             name, photos, and online profiles. See what you find!
           </h2>
           <form id="formhandler">
-            <input id="" placeholder="email" />
+            <input type="email" id="" placeholder="email" />
             <button type="submit">GO!</button>
           </form>
           <p class="gold-text">
@@ -116,27 +116,41 @@
           </div>
         </div>
 
-        <div class="loading-screen">
-          <img class="loading-spinner" src="assets/loading_spinner.gif" />
+        <div class="second-page">
+            <div class="lookup-header">
+                <div class="header-wrapper">
+                    <a href="/"><image class="co-logo" src="./logo.png"></image></a>
+                    <div>
+                        <image class="tray-icon" src="./search.png"></image>
+                        <image class="tray-icon" src="./person.png"></image>
+                    </div>
+                </div>
+        
+            </div>
+            <div class="loading-screen">
+              <img class="loading-spinner" src="assets/loading_spinner.gif" />
+            </div>
+    
+            <div class="error-page"></div>
+    
+            <div class="result-page"></div>
+            <div class="og-footer">
+                <div class="footer-wrapper">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat.
+                  </p>
+                  <div class="footer-links">
+                    <a href="">Terms</a> | <a href="0">Privacy</a>
+                  </div>
+                </div>
+              </div>
         </div>
 
-        <div class="error-page"></div>
-
-        <div class="result-page"></div>
       </div>
-      <div class="og-footer">
-        <div class="footer-wrapper">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
-          <div class="footer-links">
-            <a href="">Terms</a> | <a href="0">Privacy</a>
-          </div>
-        </div>
-      </div>
+    
     </div>
 
     <!-- slim jquery does not provide ajax library -->

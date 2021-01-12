@@ -11,6 +11,7 @@ $(document).ready(function () {
         $(".hero").hide();
         $(".lookup-info").hide();
         $(".og-footer").hide();
+        $('.lookup-header').show()
         $('.loading-screen').show()
       console.log("searching", email);
       $.ajax({
@@ -26,16 +27,6 @@ $(document).ready(function () {
                 $(".result-page").hide();
                 $(".error-page").show();
                 $('.error-page').html(`
-                <div class="lookup-header">
-                <div class="header-wrapper">
-                    <div><image class="co-logo" src="./logo.png"></image></div>
-                    <div>
-                        <image class="tray-icon" src="./search.png"></image>
-                        <image class="tray-icon" src="./person.png"></image>
-                    </div>
-                </div>
-        
-            </div>
             <div class="error-page-content">
             <h1 class="blue-text">0 Results</h1>
             <p>Try starting a new search below</p>
@@ -44,29 +35,41 @@ $(document).ready(function () {
         <h1>Can't Find The Right Person?</h1>
         <h2><span class="gold-text">Try Again</span> - Make a new search</h2>
         <form id="redo-formhandler">
-            <input id="" placeholder="email"/>
+            <input type="email" id="" placeholder="email"/>
             <button type="submit">GO!</button>
         </form>
         <p class="gold-text"><span><img class="lock-img" src="lock.png"/></span> Enter Any Email Address. They won't be notified.</p>
     </div>
+  </div>
+  <div class="new-footer-wrapper">
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+    aliquip ex ea commodo consequat.
+  </p>
+  <div class="footer-links">
+    <a href="">Terms</a> | <a href="0">Privacy</a>
+  </div>
+</div>
             `)
+            $("#redo-formhandler").submit(function (e) {
+                console.log("submitted");
+                e.preventDefault();
+                console.log("CLICKED");
+            
+                console.log(e.target[0].value);
+                let email = e.target[0].value;
+                g.searchUsers(email);
+            });
               }
+              
             
          else if (data) {
             console.log("there is data!!!", data)
             $('.loading-screen').hide()
             console.log("api", data);
             $(".result-page").html(`
-            <div class="lookup-header">
-        <div class="header-wrapper">
-            <div><image class="co-logo" src="./logo.png"></image></div>
-            <div>
-                <image class="tray-icon" src="./search.png"></image>
-                <image class="tray-icon" src="./person.png"></image>
-            </div>
-        </div>
-
-    </div>
                 <div class="result-page-content">
                 <div class="result-heading ">
                     <h1 class="blue-text">1 Result</h1>
@@ -94,9 +97,9 @@ $(document).ready(function () {
                 <div class="card-right">
                 <div class="card-detail card-numbers">
                 <h2 class="blue-text">Phone Numbers</h2>
-                <a href="tel=${data.phone_numbers[0]}">${data.phone_numbers[0]}</a>
-                <a href="tel=${data.phone_numbers[1]}">${data.phone_numbers[1]}</a>
-                <a href="tel=${data.phone_numbers[2]}">${data.phone_numbers[2]}</a>
+                <a href="tel:${data.phone_numbers[0]}">${data.phone_numbers[0]}</a>
+                <a href="tel:${data.phone_numbers[1]}">${data.phone_numbers[1]}</a>
+                <a href="tel:${data.phone_numbers[2]}">${data.phone_numbers[2]}</a>
                 </div>
                 <div class="card-detail card-relatives">
                 <h2 class="blue-text">Relatives</h2>
@@ -110,17 +113,22 @@ $(document).ready(function () {
                 <h1>Can't Find The Right Person?</h1>
                 <h2><span class="gold-text">Try Again</span> - Make a new search</h2>
                 <form id="redo-formhandler">
-                    <input id="" placeholder="email"/>
+                    <input type="email" id="" placeholder="email"/>
                     <button type="submit">GO!</button>
                 </form>
-                <p class="gold-text"><span>logo</span> Enter Any Email Address. They won't be notified.</p>
+                <p class="gold-text"><span><image class="lock-img" src="lock.png"/></span> Enter Any Email Address. They won't be notified.</p>
             </div>
-            <div class="footer">
-            <div class="footer-wrapper">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <div class="footer-links"><a href="">Terms</a> | <a href="0">Privacy</a></div>
-            </div>
-        </div>
+            <div class="new-footer-wrapper">
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+    aliquip ex ea commodo consequat.
+  </p>
+  <div class="footer-links">
+    <a href="">Terms</a> | <a href="0">Privacy</a>
+  </div>
+</div>
                 `);
 
 
@@ -130,7 +138,7 @@ $(document).ready(function () {
                     console.log("CLICKED");
                 
                     console.log(e.target[0].value);
-                    let email = e.target[0].value;
+                    let email = e.target[0].value.toLowerCase();
                     g.searchUsers(email);
                 });
 
@@ -138,10 +146,6 @@ $(document).ready(function () {
 
             $(".result-page").show();
           }
-        //   else {
-        //     $(".result-page").hide();
-        //     $(".error-page").show();
-        //   }
         })
         .fail(function () {
           $("#profile-result").hide();
@@ -158,7 +162,7 @@ $(document).ready(function () {
     console.log("CLICKED");
 
     console.log(e.target[0].value);
-    let email = e.target[0].value;
+    let email = e.target[0].value.toLowerCase();
     g.searchUsers(email);
   });
  
