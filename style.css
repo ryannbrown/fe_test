@@ -15,6 +15,19 @@
 
 }
 
+
+.co-logo {
+    width:173px;
+    height:25px;
+    margin:15px 0px;
+}
+
+.tray-icon{
+    width:23px;
+    height:23px;
+    margin:15px;
+}
+
 .hero {
     background-color:#004A80;
     height:444px;
