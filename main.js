@@ -5,13 +5,14 @@ $(document).ready(function() {
     
         searchUsers: function (email) {
      
-            console.log("searching")
+
+            console.log("searching", email)
             $.ajax({
               url: `https://ltv-data-api.herokuapp.com/api/v1/records.json?email=${email}`,
             }).done(function(email) {
               $('.hero').hide();
               $('.lookup-info').hide();
-              if (email.length > 0) {
+              if (email) {
                   console.log("api", email)
                 $('.object').html(`
                     <h1>Here it is</h1>
@@ -35,8 +36,10 @@ $(document).ready(function() {
         console.log("submitted")
         e.preventDefault();
         console.log("CLICKED")
-        console.log(e.target[0])
-        let email = e.target[1].value;
+       
+     
+        console.log(e.target[0].value)
+        let email = e.target[0].value;
         g.searchUsers(email);
     
       });
