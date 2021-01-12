@@ -2,27 +2,23 @@
 $(document).ready(function () {
 
 
-  console.log("App started!");
   var g = {
     searchUsers: function (email) {
-        console.log("here we are")
-
+    
         $(".home-header").hide();
         $(".hero").hide();
         $(".lookup-info").hide();
         $(".og-footer").hide();
         $('.lookup-header').show()
         $('.loading-screen').show()
-      console.log("searching", email);
+  
       $.ajax({
         url: `https://ltv-data-api.herokuapp.com/api/v1/records.json?email=${email}`,
       })
         .done(function (data) {
-            console.log("data", data)
-
             if (data.length === 0) {
-                console.log("FAILED DATA")
-          
+
+                // if there is no data, we return our error page 
                 $('.loading-screen').hide()
                 $(".result-page").hide();
                 $(".error-page").show();
@@ -53,12 +49,10 @@ $(document).ready(function () {
   </div>
 </div>
             `)
+
+            // we bring back our form handling function into the correct context
             $("#redo-formhandler").submit(function (e) {
-                console.log("submitted");
                 e.preventDefault();
-                console.log("CLICKED");
-            
-                console.log(e.target[0].value);
                 let email = e.target[0].value;
                 g.searchUsers(email);
             });
@@ -66,20 +60,19 @@ $(document).ready(function () {
               
             
          else if (data) {
-            console.log("there is data!!!", data)
             $('.loading-screen').hide()
-            console.log("api", data);
+            // this renders our results page if we have data
             $(".result-page").html(`
-                <div class="result-page-content">
-                <div class="result-heading ">
+        <div class="result-page-content">
+            <div class="result-heading ">
                     <h1 class="blue-text">1 Result</h1>
                     <p>Look at the result below to see the details of the person you're searched for.</p>
-                </div>
-                <div class="result-card">
+            </div>
+            <div class="result-card">
                 <div class="av-box">
                 <img class="av-img" src='person.png'/>
-                </div>
-                <div class="card-header-detail card-header">
+            </div>
+            <div class="card-header-detail card-header">
                 <h1 class="blue-text">${data.first_name} ${data.last_name}</h1>
                 <p>${data.description}</p>
                 </div>
@@ -88,7 +81,7 @@ $(document).ready(function () {
                 <div class="card-detail card-address">
                 <h2 class="blue-text">Address</h2>
                 <p>${data.address}</p>
-                </div>
+            </div>
                 <div class="card-detail card-data">
                 <h2 class="blue-text">Email</h2>
                 <p>${data.email}</p>
@@ -119,25 +112,21 @@ $(document).ready(function () {
                 <p class="gold-text"><span><image class="lock-img" src="lock.png"/></span> Enter Any Email Address. They won't be notified.</p>
             </div>
             <div class="new-footer-wrapper">
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-    aliquip ex ea commodo consequat.
-  </p>
-  <div class="footer-links">
-    <a href="">Terms</a> | <a href="0">Privacy</a>
-  </div>
-</div>
+                <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                aliquip ex ea commodo consequat.
+                 </p>
+                <div class="footer-links">
+                    <a href="">Terms</a> | <a href="0">Privacy</a>
+            </div>
+        </div>
                 `);
 
-
+                    // once again we bring our form handler function into correct context
                 $("#redo-formhandler").submit(function (e) {
-                    console.log("submitted");
                     e.preventDefault();
-                    console.log("CLICKED");
-                
-                    console.log(e.target[0].value);
                     let email = e.target[0].value.toLowerCase();
                     g.searchUsers(email);
                 });
@@ -156,13 +145,13 @@ $(document).ready(function () {
     
   };
 
-  $("#formhandler").submit(function (e) {
-    console.log("submitted");
-    e.preventDefault();
-    console.log("CLICKED");
+  //this is the form hanlder for the lookup
 
-    console.log(e.target[0].value);
+  $("#formhandler").submit(function (e) {
+    e.preventDefault();
+    // we take the email and ensure it is in lowercase
     let email = e.target[0].value.toLowerCase();
+    //we use the email as a param in the function to search for the users
     g.searchUsers(email);
   });
  
