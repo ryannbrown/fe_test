@@ -10,10 +10,11 @@ $(document).ready(function () {
         $(".home-header").hide();
         $(".hero").hide();
         $(".lookup-info").hide();
+        $(".error-page").hide();
         $(".og-footer").hide();
         $('.lookup-header').show()
         $('.loading-screen').show()
-        
+
          // insert the email into the API fetch
       $.ajax({
         url: `https://ltv-data-api.herokuapp.com/api/v1/records.json?email=${email}`,
