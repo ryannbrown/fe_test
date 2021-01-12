@@ -2,7 +2,7 @@
     font-family: Helvetica;
 }
 
-.header {
+.home-header {
     width:100%;
     background-color:transparent;
     position:absolute;
@@ -152,6 +152,15 @@ form button {
 }
 
 
+.loading-screen {
+    height: 100vh;
+    /* display: flex !important; */
+    margin-top:100px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display:none;
+}
 
 .error-page {
     display:none;
@@ -166,9 +175,30 @@ form button {
 }
 
 
-.result-page .header {
+.result-page .lookup-header {
     background-color:#004A80;
 }
+
+.loading-screen .lookup-header {
+    background-color:#004A80;
+}
+
+.error-page .lookup-header {
+    background-color:#004A80;
+}
+
+.error-page-content {
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-page-content h1 {
+    font-size:2.5rem;
+}
+
 
 .result-heading {
     padding-top: 77px;
@@ -176,14 +206,50 @@ form button {
     text-align:center;
 }
 
-
-.result-card {
+.card-header{
     width:75%;
     margin:0px auto;
+}
+
+
+.result-card {
+    max-width:980px;
+    margin:25px auto;
     border-radius:25px;
     padding:25px;
-    box-shadow: rgba(37, 42, 49, 0.16) 0px 0px 2px 0px, rgba(37, 42, 49, 0.12) 0px 1px 4px 0px;
+    box-shadow: rgba(37, 42, 49, 0.16) 20px 20px 50px 20px, rgba(37, 42, 49, 0.12) 0px 1px 4px 0px;
     height:100%;
+    position: relative;
+}
+
+.av-box{
+    margin-top:15px;
+    top:25px;
+    left:25px;
+    position:absolute;
+    width:90px;
+    height:90px;
+    border-radius:50px;
+    background-color:#004A80;
+}
+
+.av-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -20px;
+    margin-top: -23px;
+}
+
+.card-detail {
+    height:125px;
+    min-height:100%;
+}
+
+.card-bottom {
+    height: 100%;
+    max-width: 75%;
+    margin: 0px auto;
 }
 
 .card-left{
@@ -193,4 +259,21 @@ form button {
 .card-right{
 width:50%;
 float:right;
+}
+
+.card-numbers {
+    display:flex;
+    flex-direction: column;
+   
+}
+
+.card-numbers a {
+    margin:3px;
+    text-decoration:none !important;
+}
+
+
+
+img.loading-spinner {
+    margin-top: 15%;
 }

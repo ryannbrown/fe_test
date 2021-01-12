@@ -1,19 +1,63 @@
+
 $(document).ready(function () {
+
+
   console.log("App started!");
   var g = {
     searchUsers: function (email) {
+        console.log("here we are")
+
+        $(".home-header").hide();
+        $(".hero").hide();
+        $(".lookup-info").hide();
+        $(".og-footer").hide();
+        $('.loading-screen').show()
       console.log("searching", email);
       $.ajax({
         url: `https://ltv-data-api.herokuapp.com/api/v1/records.json?email=${email}`,
       })
-        .done(function (email) {
-          $(".hero").hide();
-          $(".lookup-info").hide();
-          $(".og-footer").hide();
-          if (email) {
-            console.log("api", email);
+        .done(function (data) {
+            console.log("data", data)
+
+            if (data.length === 0) {
+                console.log("FAILED DATA")
+          
+                $('.loading-screen').hide()
+                $(".result-page").hide();
+                $(".error-page").show();
+                $('.error-page').html(`
+                <div class="lookup-header">
+                <div class="header-wrapper">
+                    <div><image class="co-logo" src="./logo.png"></image></div>
+                    <div>
+                        <image class="tray-icon" src="./search.png"></image>
+                        <image class="tray-icon" src="./person.png"></image>
+                    </div>
+                </div>
+        
+            </div>
+            <div class="error-page-content">
+            <h1 class="blue-text">0 Results</h1>
+            <p>Try starting a new search below</p>
+        </div>
+        <div class="hero">
+        <h1>Can't Find The Right Person?</h1>
+        <h2><span class="gold-text">Try Again</span> - Make a new search</h2>
+        <form id="redo-formhandler">
+            <input id="" placeholder="email"/>
+            <button type="submit">GO!</button>
+        </form>
+        <p class="gold-text"><span><img class="lock-img" src="lock.png"/></span> Enter Any Email Address. They won't be notified.</p>
+    </div>
+            `)
+              }
+            
+         else if (data) {
+            console.log("there is data!!!", data)
+            $('.loading-screen').hide()
+            console.log("api", data);
             $(".result-page").html(`
-            <div class="header">
+            <div class="lookup-header">
         <div class="header-wrapper">
             <div><image class="co-logo" src="./logo.png"></image></div>
             <div>
@@ -29,39 +73,44 @@ $(document).ready(function () {
                     <p>Look at the result below to see the details of the person you're searched for.</p>
                 </div>
                 <div class="result-card">
-                <div class="card-header">
-                <h2>${email.first_name} ${email.last_name}</h2>
-                <p>${email.description}</p>
+                <div class="av-box">
+                <img class="av-img" src='person.png'/>
                 </div>
+                <div class="card-header-detail card-header">
+                <h1 class="blue-text">${data.first_name} ${data.last_name}</h1>
+                <p>${data.description}</p>
+                </div>
+                <div class="card-bottom">
                 <div class="card-left">
-                <div class="card-address">
-                <h4>Address</h4>
-                <p>${email.address}</p>
+                <div class="card-detail card-address">
+                <h2 class="blue-text">Address</h2>
+                <p>${data.address}</p>
                 </div>
-                <div class="card-email">
-                <h4>Email</h4>
-                <p>${email.email}</p>
+                <div class="card-detail card-data">
+                <h2 class="blue-text">Email</h2>
+                <p>${data.email}</p>
                 </div>
                 </div>
                 <div class="card-right">
-                <div class="card-numbers">
-                <h4>Phone Numbers</h4>
-                <p>${email.phone_numbers[0]}</p>
-                <p>${email.phone_numbers[1]}</p>
-                <p>${email.phone_numbers[2]}</p>
+                <div class="card-detail card-numbers">
+                <h2 class="blue-text">Phone Numbers</h2>
+                <a href="tel=${data.phone_numbers[0]}">${data.phone_numbers[0]}</a>
+                <a href="tel=${data.phone_numbers[1]}">${data.phone_numbers[1]}</a>
+                <a href="tel=${data.phone_numbers[2]}">${data.phone_numbers[2]}</a>
                 </div>
-                <div class="card-relatives">
-                <h4>Relatives</h4>
-                <p>${email.relatives[0]}</p>
-                <p>${email.relatives[1]}</p>
+                <div class="card-detail card-relatives">
+                <h2 class="blue-text">Relatives</h2>
+                <p>${data.relatives[0]}</p>
+                <p>${data.relatives[1]}</p>
+                </div>
                 </div>
                 </div>
                 </div>
                 <div class="hero">
                 <h1>Can't Find The Right Person?</h1>
                 <h2><span class="gold-text">Try Again</span> - Make a new search</h2>
-                <form id="formhandler">
-                    <input id="formhandler" placeholder="email"/>
+                <form id="redo-formhandler">
+                    <input id="" placeholder="email"/>
                     <button type="submit">GO!</button>
                 </form>
                 <p class="gold-text"><span>logo</span> Enter Any Email Address. They won't be notified.</p>
@@ -74,10 +123,25 @@ $(document).ready(function () {
         </div>
                 `);
 
+
+                $("#redo-formhandler").submit(function (e) {
+                    console.log("submitted");
+                    e.preventDefault();
+                    console.log("CLICKED");
+                
+                    console.log(e.target[0].value);
+                    let email = e.target[0].value;
+                    g.searchUsers(email);
+                });
+
+
+
             $(".result-page").show();
-          } else {
-            $(".error-page").show();
           }
+        //   else {
+        //     $(".result-page").hide();
+        //     $(".error-page").show();
+        //   }
         })
         .fail(function () {
           $("#profile-result").hide();
@@ -85,6 +149,7 @@ $(document).ready(function () {
           $("#welcome-text").text("Not a valid place. Please enter new email.");
         });
     },
+    
   };
 
   $("#formhandler").submit(function (e) {
@@ -96,4 +161,5 @@ $(document).ready(function () {
     let email = e.target[0].value;
     g.searchUsers(email);
   });
+ 
 });
