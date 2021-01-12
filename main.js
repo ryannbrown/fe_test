@@ -1,17 +1,20 @@
 
 $(document).ready(function () {
 
-
+// global object to store all functions and variables as desired
   var g = {
     searchUsers: function (email) {
     
+
+        // making changes to first page, rendering second page. 
         $(".home-header").hide();
         $(".hero").hide();
         $(".lookup-info").hide();
         $(".og-footer").hide();
         $('.lookup-header').show()
         $('.loading-screen').show()
-  
+        
+         // insert the email into the API fetch
       $.ajax({
         url: `https://ltv-data-api.herokuapp.com/api/v1/records.json?email=${email}`,
       })
