@@ -150,3 +150,9 @@ form button {
     display:flex;
     align-items:center;
 }
+
+
+
+.error-page {
+    display:none;
+}
