@@ -156,3 +156,41 @@ form button {
 .error-page {
     display:none;
 }
+.result-page {
+    display:none;
+}
+
+.result-page-content {
+    height:400px;
+    width:100%;
+}
+
+
+.result-page .header {
+    background-color:#004A80;
+}
+
+.result-heading {
+    padding-top: 77px;
+    width:100%;
+    text-align:center;
+}
+
+
+.result-card {
+    width:75%;
+    margin:0px auto;
+    border-radius:25px;
+    padding:25px;
+    box-shadow: rgba(37, 42, 49, 0.16) 0px 0px 2px 0px, rgba(37, 42, 49, 0.12) 0px 1px 4px 0px;
+    height:100%;
+}
+
+.card-left{
+   width:50%; 
+   float:left;
+}
+.card-right{
+width:50%;
+float:right;
+}
