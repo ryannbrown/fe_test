@@ -141,9 +141,7 @@ $(document).ready(function () {
           }
         })
         .fail(function () {
-          $("#profile-result").hide();
-          $(".error-page").show();
-          $("#welcome-text").text("Not a valid place. Please enter new email.");
+        alert('something has gone wrong with the api')
         });
     },
     
